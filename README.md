@@ -37,7 +37,7 @@ angular:
   y: 0.0
   z: 0.0" 
  
-NOTE: to see rotation enter values in angular.z and to see motion enter values in linear.x
+NOTE: to see rotation enter values in angular.z and to see linear motion enter values in linear.x
 
 Viewing URDF
 ============
