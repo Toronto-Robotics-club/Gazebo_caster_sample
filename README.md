@@ -20,16 +20,16 @@ It is assumed you have all this software installed and working.
 Terminal 1:
  1. put these files into ~/Desktop/workspace/src directory
  2. navigate to the directory with the files, and build the project:
-         > $ cd Desktop/workspace
-         > $ catkin_make
+ > $ cd Desktop/workspace
+ > $ catkin_make
  3. run a setup script:
-         > $ source devel/setup.bash 
+ > $ source devel/setup.bash 
  4. run the project:
-         > $ roslaunch jimmy_gazebo jimmy_world.launch
+ > $ roslaunch jimmy_gazebo jimmy_world.launch
 
 Terminal 2:
  5. To give commands to the diff_drive controller to see motion use the TAB-TAB completion:
-         > $ rostopic pub /cmd_vel geometry_msgs/Twist "linear:
+ > $ rostopic pub /cmd_vel geometry_msgs/Twist "linear:
   x: 0.0
   y: 0.0
   z: 0.0
