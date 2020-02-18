@@ -1,8 +1,8 @@
-Castor Wheel Example for Gazebo
+Caster Wheel Example for Gazebo
 ===============================
 
 At the present time I have not been able to locate any practical guides for
-building a castor wheel. This packages demonstrates how to implement a castor
+building a caster wheel. This packages demonstrates how to implement a caster
 wheel for use in Gazebo. The name of the robot is "jimmy".
 
 Package Contents
