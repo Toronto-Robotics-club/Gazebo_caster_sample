@@ -75,12 +75,6 @@
   <xacro:property name="lms_structural_extrusion_link_height" value="0.425" />
   <xacro:property name="lms_structural_extrusion_link_mass" value="3"/> <!--3 kg-->
 
-  <!--define some camera properties-->
-  <xacro:property name="camera_link_length" value="0.02"/> <!--longest edge-->
-  <xacro:property name="camera_link_height" value="0.03"/> <!--second longest edge-->
-  <xacro:property name="camera_link_width" value="0.06"/> <!--smallest edge-->
-  <xacro:property name="camera_link_mass" value="0.1"/>
-
   <!--Friction for joints-->
   <xacro:property name="friction_val" value="0.15"/>
 
@@ -202,7 +196,6 @@
         <mass value="${mass}"/>
         
         <!--This is the 3x3 inertial matrix. See: https://wiki.ros.org/urdf/XML/link -->
-        <!--These lines of code came from Emiliano Borghi's project-->
         <inertia
           ixx="${mass*(3*radius*radius+length*length)/12}" 
     	  ixy = "0" 
@@ -284,21 +277,6 @@
     <!--origin rpy="0 0 0" xyz="-0.325 -0.1905 0.066"/-->
     <origin rpy="0 0 0" xyz="-0.325 -0.1905 0.066"/>
   </xacro:box_link>
-
-  <!--TEST====================================================================================-->
-
-  <!--This is the camera link. I mounted a usb camera on the front of the second level -->
-  <xacro:box_link link_name="camera" length="${camera_link_length}"
-                                   width="${camera_link_width}"
-                                   height="${camera_link_height}" material="green" mass="${camera_link_mass}">
-    <origin rpy="0 0 0" xyz="0 0 0"/>
-  </xacro:box_link>
-
-     <!-- Attach camera link to base link-->
-  <xacro:fixed_joint name="base_to_camera_" parent="base" child="camera">
-	<!-- -->
-    <origin xyz="0.0 -0.155 0.17"/>
-  </xacro:fixed_joint>
 
   <!--left_drive_wheel_link is a well named link :-) -->
   <xacro:cylinder_link link_name="left_drive_wheel" length="${drive_wheel_length}" radius="${drive_wheel_radius}" material="black" mass="${drive_wheel_mass}"> 
@@ -456,11 +434,6 @@
   <!-- code (even though where I can, I still use xacro. Ex: joints).        -->
   <!--=======================================================================-->
 
-  <!-- Connect the LMS mesh to the aluminum plate on which it sits.       -->
-  <!--xacro:fixed_joint name="lms_plate_to_lms_mesh" parent="lms_plate" child="hokuyo">
-    <origin xyz="0.12 0 0.073"/>
-  </xacro:fixed_joint-->
-
   <joint name="lms_plate_to_lms_mesh" type="fixed">
 	<!--axis tag is not used according to: https://wiki.ros.org/urdf/XML/joint -->
     <!--axis xyz="0 0 0" /-->
@@ -509,27 +482,6 @@
     </inertial>
   </link>
 
-
-
-  <!--Here I am trying to implement this answer:                             -->
-  <!--https://answers.ros.org/question/274774/how-to-merge-laser-tf-with-other-tf-frames/-->
-  <!--The "laser" link is the way to represent the laser producing object in -->
-  <!--the URDF file.                                                         -->
-  <!--link name="laser"></link-->
-
-  <!--This is the joint between the "laser" link and the lms mesh This is    -->
-  <!--where I would raise the laser and tilt it a smidge (as in RVIZ it      -->
-  <!--doesn't look quite spot on...). I did not use a xacro for the fixed    -->
-  <!--joint as it would append the "laser" link to "laser_link" and I think  -->
-  <!--"laser" is a key word.                                                 -->
-  <!--joint name="lms_mesh_link_to_laser_source" type="fixed">
-    <parent link="lms_link"/>
-    <child link="laser"/-->
-    <!-- this is the point at which the two parts attach to one another, Here is
-    where I modify the values to change how the laser is rendered in RViz. As p 
-    gets larger than 0.17 the top of the scan goes too far away from bot.-->
-    <!--origin rpy= "${pi/-2} -0.025 0" xyz="0 0 0"/>
-  </joint-->
 
   <!--===============END OF PART #3 - LINK & JOINT DEFINITIONS===============-->
   <!--=======================================================================-->
