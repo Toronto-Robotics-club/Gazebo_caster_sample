@@ -17,7 +17,7 @@ This package is varified working in Gazebo7 ver 7.16, ROS Kinetic, on/in Ubuntu 
 It is assumed you have all this software installed and working. 
 
 Terminal 1:
- 1. put these files into ~/Desktop/workspace/src directory
+ 1. put these directories (jimmy_description and jimmy_gazebo) into ~/Desktop/workspace/src directory
  2. navigate to the directory with the files, and build the project:
  > $ cd Desktop/workspace
  > $ catkin_make
